@@ -4,16 +4,14 @@ const maxAreaOfIsland = function(grid) {
 	const arrPos = [[0, -1], [0, 1], [-1, 0], [1,0]]
 	const dfs = (i, j) => {
 		let total = 0
-		const calArea = (i, j) => {
-			if (i>=0 && j>=0 && i<grid.length && j<grid[0].length && grid[i][j]===1) {
-				total ++
-				grid[i][j] = 0
-				arrPos.forEach(pos => {
-					calArea(i + pos[0], j + pos[1])
-				})
-			}
+		if (i>=0 && j>=0 && i<grid.length && j<grid[0].length && grid[i][j]===1) {
+			total ++
+			grid[i][j] = 0
+			arrPos.forEach(pos => {
+				total += dfs(i + pos[0], j + pos[1])
+		
+			})
 		}
-		calArea(i,j)
 		return total
 	}
 	for(let i=0; i<grid.length; i++) {
