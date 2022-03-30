@@ -10,7 +10,6 @@ const maxAreaOfIsland = function(grid) {
 			grid[i][j] = 0
 			arrPos.forEach(pos => {
 				total += dfs(i + pos[0], j + pos[1])
-		
 			})
 		}
 		return total
