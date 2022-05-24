@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<button id="open">打开弹窗</button>
+	<button id="close">关闭弹窗</button>
+</body>
+<script type="text/javascript">
+	class Modal {
+		constructor() {
+			if (!Modal.instance) {
+				this.createEl()
+				Modal.instance = this
+			}
+			return Modal.instance
+		}
+		createEl() {
+			var modal = document.createElement('div')
+			modal.id = 'modal'
+			modal.style.width = '100px'
+			modal.style.height = '100px'
+			modal.style.background = '#ccc'
+			modal.style.display = 'none'
+			document.body.appendChild(modal)
+			this.modal = modal
+		}
+		open() {
+			this.modal.style.display = 'block'
+		}
+		close() {
+			this.modal.style.display = 'none'
+		}
+	}
+
+	class Detector {
+		constructor(_button) {
+			this._button = _button
+		}
+		onOpen() {
+			this._button.open()
+			this.openDetector()
+		}
+		onClose() {
+			this._button.close()
+			this.closeDetector()
+		}
+		openDetector() {
+			document.getElementById('open').innerText = '快去登录吧~'
+		}
+		closeDetector() {
+			document.getElementById('open').innerText = '打开弹窗'
+		}
+	}
+
+	window.onload = function () {
+		var _modal = new Modal()
+		var _detector = new Detector(_modal)
+		document.getElementById('open').addEventListener('click', function () {
+			// _modal = new Modal()
+			// _modal.open()
+			_detector.onOpen()
+		})
+		document.getElementById('close').addEventListener('click', function () {
+			if (_modal) {
+				// _modal.close()
+				_detector.onClose()
+			}
+		})
+	}
+</script>
+
+</html>

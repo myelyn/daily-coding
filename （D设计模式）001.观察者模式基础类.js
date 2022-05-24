@@ -1,21 +1,21 @@
 // 发布者类
 class Publisher {
-	constructor () {
+	constructor() {
 		this.obs = []
 	}
-	add (ob) {
+	add(ob) {
 		this.obs.push(ob)
 		console.log(`添加订阅者${ob.name}`)
 	}
-	remove (ob) {
+	remove(ob) {
 		this.obs.forEach((item, i) => {
 			if (item === ob) {
-				this.obs.splice(i,1)
+				this.obs.splice(i, 1)
 			}
 		})
 		console.log(`移除订阅者${ob.name},剩余订阅者${JSON.stringify(this.obs)}`)
 	}
-	notify () {
+	notify() {
 		this.obs.forEach(ob => {
 			ob.update(this)
 		})
@@ -23,10 +23,10 @@ class Publisher {
 }
 // 订阅者类
 class Observer {
-	constructor (name) {
+	constructor(name) {
 		this.name = name
 	}
-	update () {
+	update() {
 		console.log(`收到发布者通知，订阅者${this.name}开始处理`)
 	}
 }
