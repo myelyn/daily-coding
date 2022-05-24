@@ -12,7 +12,6 @@ const people = new Proxy({
 	}
 })
 
-
 let men = {_name: 'bbb'}
 men.__proto__ = people
 
