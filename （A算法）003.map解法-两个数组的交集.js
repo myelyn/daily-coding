@@ -4,7 +4,7 @@
 const intersect = (arr1, arr2) => {
 	const creatMap = (arr) => {
 		const map = new Map()
-		for (var i=0; i<arr.length; i++){
+		for (var i = 0; i < arr.length; i++) {
 			let count = map.get(arr[i])
 			count = count ? count + 1 : 1
 			map.set(arr[i], count)
@@ -18,7 +18,7 @@ const intersect = (arr1, arr2) => {
 		let countInOther = map2.get(k)
 		if (countInOther) {
 			let countTotal = Math.min(countInOther, v)
-			for (let i=0; i<countTotal; i++) {
+			for (let i = 0; i < countTotal; i++) {
 				result.push(k)
 			}
 		}
@@ -26,4 +26,4 @@ const intersect = (arr1, arr2) => {
 	return result
 };
 
-console.log(intersect([4,9,5],[9,4,9,8,4]))
+console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]))

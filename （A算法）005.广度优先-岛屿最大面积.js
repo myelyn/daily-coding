@@ -4,19 +4,19 @@
 
 const maxAreaOfIsland = (grid) => {
 	const lenRow = grid.length, lenCol = grid[0].length
-	const arrPos = [[0, -1], [0, 1], [-1, 0], [1,0]]
-	let result = 0 
-	for(let i=0; i<lenRow; i++) {
-		for (let j=0; j<lenCol; j++) {
-			let quene = [[i,j]]
+	const arrPos = [[0, -1], [0, 1], [-1, 0], [1, 0]]
+	let result = 0
+	for (let i = 0; i < lenRow; i++) {
+		for (let j = 0; j < lenCol; j++) {
+			let quene = [[i, j]]
 			let count = 0
-			while(quene.length) {
-				const [x,y] = quene.shift()
-				if (x<0 || y<0 || x>=lenRow || y>=lenCol || grid[x][y]!==1) continue
+			while (quene.length) {
+				const [x, y] = quene.shift()
+				if (x < 0 || y < 0 || x >= lenRow || y >= lenCol || grid[x][y] !== 1) continue
 				grid[x][y] = 0
 				count++
 				arrPos.forEach(([dx, dy]) => {
-					const newX = x+dx,newY = y+dy
+					const newX = x + dx, newY = y + dy
 					quene.push([newX, newY])
 				})
 			}
@@ -25,6 +25,6 @@ const maxAreaOfIsland = (grid) => {
 	}
 	return result
 }
-const grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+const grid = [[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0], [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]
 
 console.log(maxAreaOfIsland(grid))

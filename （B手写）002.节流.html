@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<div id="cnt" style="width: 200px; height: 100px; background-color: #EEEEEE;"></div>
-	</body>
-	<script type="text/javascript">
-    
-		const debounce = (func, wait) => {
-      // 节流需要保存起来的是触发时间，对比两次时间，大于wait就执行
-			let prev = 0
-			return () => {
-				let cur = new Date().getTime()
-				if (cur - prev > wait) {
-					func.call(this)
-					prev = cur
-				}
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<div id="cnt" style="width: 200px; height: 100px; background-color: #EEEEEE;"></div>
+</body>
+<script type="text/javascript">
+
+	const debounce = (func, wait) => {
+		// 节流需要保存起来的是触发时间，对比两次时间，大于wait就执行
+		let prev = 0
+		return () => {
+			let cur = new Date().getTime()
+			if (cur - prev > wait) {
+				func.call(this)
+				prev = cur
 			}
 		}
+	}
 
-    let count = 1
-		const mousemoveHandler = () => {
-      cnt.innerHTML = count++
-		}
-    const cnt = document.querySelector('#cnt')
-		cnt.addEventListener('mousemove', debounce(mousemoveHandler, 300))
-  </script>
+	let count = 1
+	const mousemoveHandler = () => {
+		cnt.innerHTML = count++
+	}
+	const cnt = document.querySelector('#cnt')
+	cnt.addEventListener('mousemove', debounce(mousemoveHandler, 300))
+</script>

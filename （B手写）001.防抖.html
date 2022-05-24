@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<div id="cnt" style="width: 200px; height: 100px; background-color: #EEEEEE;"></div>
-	</body>
-	<script type="text/javascript">
 
-		const debounce = (func, delay) => {
-			// 唯一的要点就是利用闭包把这个定时器保存起来，如果在触发定时器之前再次调用了函数，就清掉定时器
-			let timer
-			return function(){
-				clearTimeout(timer)
-				timer = setTimeout(function(){
-					func.apply(this)
-				}, delay)
-				// 或使用bind:timer = setTimeout(func.bind(this), delay),bind不会立即触发，不用包一层
-			}
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<div id="cnt" style="width: 200px; height: 100px; background-color: #EEEEEE;"></div>
+</body>
+<script type="text/javascript">
+
+	const debounce = (func, delay) => {
+		// 唯一的要点就是利用闭包把这个定时器保存起来，如果在触发定时器之前再次调用了函数，就清掉定时器
+		let timer
+		return function () {
+			clearTimeout(timer)
+			timer = setTimeout(function () {
+				func.apply(this)
+			}, delay)
+			// 或使用bind:timer = setTimeout(func.bind(this), delay),bind不会立即触发，不用包一层
 		}
-		
-		let count = 1
-		const actionHandler = function() {
-			cnt.innerHTML = count++
-		}
-		const cnt = document.getElementById('cnt')
-		cnt.addEventListener('mousemove', debounce(actionHandler, 300))
-	</script>
+	}
+
+	let count = 1
+	const actionHandler = function () {
+		cnt.innerHTML = count++
+	}
+	const cnt = document.getElementById('cnt')
+	cnt.addEventListener('mousemove', debounce(actionHandler, 300))
+</script>
+
 </html>
